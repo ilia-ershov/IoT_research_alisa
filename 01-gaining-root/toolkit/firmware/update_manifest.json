@@ -1,0 +1,10 @@
+{
+  "hasUpdate": true,
+  "version": "0.369.1.46.4778262943.20261013.299",
+  "downloadUrl": "https://cdnriqbxswemmatxzibl.svc.cdn.yandex.net/yandexmini_2/ota/user/7ce77cd8-0dba-45ab-8938-b751dc2d1988/0.369.1.46.4778262943.20261013.299.zip",
+  "crc32": 1524631406,
+  "critical": true,
+  "fallbackUrl": "https://quasar.s3.yandex.net/yandexmini_2/ota/user/7ce77cd8-0dba-45ab-8938-b751dc2d1988/0.369.1.46.4778262943.20261013.299.zip",
+  "fallbackIp": "93.158.134.158",
+  "updateId": "150477"
+}

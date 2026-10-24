@@ -1,0 +1,12 @@
+#!/usr/bin/env expect
+set timeout 25
+set host [lindex $argv 0]
+set user [lindex $argv 1]
+set pass [lindex $argv 2]
+set cmd [join [lrange $argv 3 end] " "]
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=10 "$user@$host" "$cmd"
+expect {
+    -re "(?i)password:" { send "$pass\r"; exp_continue }
+    -re "(?i)yes/no"   { send "yes\r"; exp_continue }
+    eof
+}
