@@ -1,0 +1,28 @@
+# Virtual envs / caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+
+# Large / binary research artifacts (kept out of git; see artifacts/README.md)
+*.id0
+*.id1
+*.id2
+*.nam
+*.til
+maind
+*.strings
+*.tar.gz
+*.zip
+extracted/
+dump/
+
+# Secrets — never commit live credentials or leaked CA material
+*.key
+*.pem
+*oauth*
+*token*
+secrets*
