@@ -14,6 +14,8 @@ assistant speak and act on command over the LAN.
 
 ---
 
+![Attack and research chain](assets/attack-chain.svg)
+
 ## Why this is interesting
 
 - 🔓 **Root without flashing.** Persistent `uid=0` obtained purely in software by
@@ -53,6 +55,8 @@ assistant speak and act on command over the LAN.
 
 ---
 
+![System architecture](assets/architecture.svg)
+
 ## Repository map
 
 | Chapter | What's inside |
@@ -82,6 +86,9 @@ A good reading order: **00 → 01 → 02 → 03 → 04 → 05 → 06**.
 
 ---
 
+See the consolidated **[security findings register](SECURITY_FINDINGS.md)** for the
+severity-rated summary with remediation.
+
 ## Tooling
 `adb` · **IDA Pro 9.4 + ida-pro-mcp** (agent-driven reverse engineering) · Python
 (`websockets`, `paramiko`) · `openssl`/`nginx` MITM stand · a BusyBox/armhf target with no
@@ -93,3 +100,6 @@ devices. Removed/redacted: the account OAuth/x-tokens and glagol `conversationTo
 Wi-Fi PSK and SSID, device serial / MAC / account UID, device key hashes, and the **leaked
 eMudhra CA private key** (the public eQuasar project is cited instead). Network ADB on this
 firmware is unauthenticated — keep port 5555 on a trusted LAN.
+
+## License
+MIT — see [LICENSE](LICENSE). Research on the author's own device; not affiliated with Yandex.
