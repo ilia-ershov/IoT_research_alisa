@@ -29,7 +29,7 @@ What the device records and sends, and when. The audio and LED subsystems, inclu
 make it play or say something. And the "glagol" LAN protocol, which I reversed far enough to
 make the live assistant speak arbitrary text over Wi-Fi.
 
-![Attack and research chain](assets/attack-chain.svg)
+![Attack and research chain](assets/diagrams/attack-chain.svg)
 
 ## The device
 
@@ -53,7 +53,7 @@ make the live assistant speak arbitrary text over Wi-Fi.
 | [06-glagol-protocol](06-glagol-protocol/) | The [glagol protocol](06-glagol-protocol/internals.md), the [TTS chain](06-glagol-protocol/live-tts.md), and [`alice_tts.py`](06-glagol-protocol/alice_tts.py). |
 | [00-overview](00-overview/) | Methodology and threat model. |
 
-![System architecture](assets/architecture.svg)
+![System architecture](assets/diagrams/architecture.svg)
 
 ## A few things worth pointing out
 
