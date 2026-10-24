@@ -1,27 +1,25 @@
 # 03 — Reversing the Quasar platform (`maind`)
 
-The entire assistant is one 21 MB, stripped, 32-bit ARM binary — `maind` — built from
-Yandex's Arcadia monorepo. Every daemon is the same binary in a different mode
-(`--platformd`, `--mediad`, `--telemetry`, `--fluent-bitd`, and `argv[0]` symlinks like
-`quasar_client`, `metrics_collector`, `led_util`). This chapter reverses it in IDA Pro.
+The whole assistant is one 21 MB, stripped, 32-bit ARM binary: `maind`. Every daemon is the
+same binary started in a different mode (`--platformd`, `--mediad`, `--telemetry`,
+`--fluent-bitd`, and symlinks like `quasar_client`, `metrics_collector`, `led_util`). I
+pulled it off the device and read it in IDA Pro.
 
-## Read
-- **[binary-analysis.md](binary-analysis.md)** — first-pass: ELF profile, dependencies
-  (TFLite, VQE, BoringSSL, avahi), the service mesh, and the embedded Alice
-  directive/event vocabulary.
-- **[directives-and-ipc.md](directives-and-ipc.md)** — the directive protocol: the TTS
-  path (`handleVocalizeDirective`), text input (`quasar_voice_service_impl`), the
-  `quasar_client` IPC envelope (base64 protobuf + reflection), and the service→port map.
-- **[re-findings.md](re-findings.md)** — glagol token model (the `/glagol/token` and
-  `check_token` functions) and the cert-pinning location.
-- **[ida-setup.md](ida-setup.md)** — how IDA Pro 9.4 + `ida-pro-mcp` were wired up for
-  agent-driven RE, and the practical workarounds (per-call time limit → local VA
-  computation at image base 0; raising the tool timeout for big functions).
+## What to read
+- [binary-analysis.md](binary-analysis.md) — the first pass: what the binary is, its
+  dependencies (TFLite, the VQE audio library, BoringSSL, avahi), the service layout, and the
+  directive protocol baked into it.
+- [directives-and-ipc.md](directives-and-ipc.md) — the directive protocol: how TTS works
+  (`handleVocalizeDirective`), how text input is routed, the `quasar_client` IPC format, and
+  the service-to-port map.
+- [re-findings.md](re-findings.md) — the glagol token functions and where the TLS pinning
+  lives.
+- [ida-setup.md](ida-setup.md) — how IDA Pro and `ida-pro-mcp` were set up, and the
+  practical snags (a per-call time limit, worked around by computing string addresses on the
+  host; raising the timeout for large functions).
 
-## Highlights
-- Cloud control plane is **UniProxy** (`wss://uniproxy.alice.yandex.net`); the binary
-  carries the full `…DirectiveType` / `…EventType` set and protobuf reflection descriptors.
-- Transport is pinned (BoringSSL public-key pinning) → passive cloud interception needs a
-  pinning bypass (feasible with root).
-- The directive dispatch + glagol live in exception-heavy regions IDA doesn't always
-  auto-define as functions; reversing used string/data anchors and targeted decompiles.
+## Worth noting
+The cloud side runs over UniProxy (`wss://uniproxy.alice.yandex.net`), and the binary carries
+the full directive/event vocabulary plus protobuf descriptors. The cloud transport is pinned
+(BoringSSL public-key pinning), so capturing that traffic needs a pinning bypass — located
+here, not weaponized.

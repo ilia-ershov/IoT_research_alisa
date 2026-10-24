@@ -1,16 +1,14 @@
-# 05 — Audio & LED subsystems
+# 05 — Audio and LED
 
-## Read
-- **[audio.md](audio.md)** — the audio stack (4-mic array → VQE → TFLite spotter →
-  UniProxy; playback via `mediad`/GStreamer → ALSA → TAS5825M), the two independent volume
-  controls, and **how to make the speaker emit sound** (direct WAV via `aplay`, and live
-  assistant speech).
-- **[led.md](led.md)** — the 3-LED ring, `led_util`, and the **`.led` pattern file
-  format** (per-frame `RRGGBB ×3 + duration_ms`, `loop`/`gammacorrection` flags);
-  `ledconfigs/*.json` are 3×3 colour-correction matrices.
+## What to read
+- [audio.md](audio.md) — the audio path (four mics → VQE → TFLite spotter → UniProxy;
+  playback through `mediad`/GStreamer → ALSA → the TAS5825M amp), the two separate volume
+  controls, and how to make the speaker play or say something.
+- [led.md](led.md) — the three-LED ring, `led_util`, and the `.led` pattern file format
+  (each frame is three `RRGGBB` values plus a duration, with `loop`/`gammacorrection` flags).
+  The `ledconfigs/*.json` files are 3×3 colour-correction matrices, not a palette.
 
-## Highlights
-- Making Alice talk splits into two mechanisms: inject arbitrary PCM to the amp locally
-  (`aplay`), or drive the real assistant (see chapter 06 for the glagol TTS exploit).
-- A sample pattern is in [`../artifacts/alice_speaking.led`](../artifacts/alice_speaking.led)
-  — the breathing animation Alice shows while speaking.
+## Worth noting
+There are two ways to get sound out: push raw audio straight to the amp with `aplay`, or
+drive the real assistant (that's chapter 06). A sample pattern — the breathing animation
+Alice shows while speaking — is at [`../artifacts/alice_speaking.led`](../artifacts/alice_speaking.led).
