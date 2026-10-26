@@ -50,7 +50,7 @@ make the live assistant speak arbitrary text over Wi-Fi.
 | [03-reversing-quasar](03-reversing-quasar/) | `maind` [binary analysis](03-reversing-quasar/binary-analysis.md), the [directive/IPC protocol](03-reversing-quasar/directives-and-ipc.md), and the [IDA setup](03-reversing-quasar/ida-setup.md). |
 | [04-telemetry-and-privacy](04-telemetry-and-privacy/) | What the [telemetry](04-telemetry-and-privacy/telemetry.md) does, and the [privacy](04-telemetry-and-privacy/privacy.md) question answered with evidence. |
 | [05-audio-and-led](05-audio-and-led/) | The [audio stack](05-audio-and-led/audio.md) and the [LED](05-audio-and-led/led.md) subsystem and file format. |
-| [06-glagol-protocol](06-glagol-protocol/) | The [glagol protocol](06-glagol-protocol/internals.md), the [TTS chain](06-glagol-protocol/live-tts.md), and [`alice_tts.py`](06-glagol-protocol/alice_tts.py). |
+| [06-glagol-protocol](06-glagol-protocol/) | The [glagol protocol](06-glagol-protocol/internals.md), the [TTS chain](06-glagol-protocol/live-tts.md), and [`alice_tts.py`](tools/alice_tts.py). |
 | [00-overview](00-overview/) | Methodology and threat model. |
 
 ![System architecture](assets/diagrams/architecture.svg)
@@ -85,6 +85,16 @@ redacted: the account OAuth/x-tokens and the glagol `conversationToken`, the Wi-
 and SSID, the device serial / MAC / account id, and the leaked eMudhra CA private key (the
 public eQuasar project is cited instead). Network ADB on this firmware has no
 authentication, so keep port 5555 on a network you trust.
+
+## Disclosure
+
+The findings were reported to Yandex through their security channel. The response was
+that they were already known: the rooting primitive relies on a set of **publicly leaked
+eMudhra CA keys**, and Yandex had already shipped newer firmware (`.50` / `.372`) that
+drops those roots. So nothing here is a novel 0-day — it is a reproducible writeup of a
+known weakness on an affected older build, done on my own device for learning. The
+remediation notes in [SECURITY_FINDINGS.md](SECURITY_FINDINGS.md) reflect what current
+firmware already does.
 
 ## License
 

@@ -12,13 +12,13 @@ it into a small tool.
 - [live-tts.md](live-tts.md) — the full chain: pull the account OAuth token off the device,
   get a `conversationToken` from the backend, and send a `serverAction` that runs the
   `repeat_phrase` scenario. The speaker then says the exact text.
-- [alice_tts.py](alice_tts.py) — the tool.
+- [`../tools/alice_tts.py`](../tools/alice_tts.py) — the tool.
 
 ## Running it
 ```bash
 pip install websockets
-python3 alice_tts.py "Любой текст"
-python3 alice_tts.py "Громче!" --volume 0.4
+python3 ../tools/alice_tts.py "Любой текст"
+python3 ../tools/alice_tts.py "Громче!" --volume 0.4
 ```
 No app login needed. Because we're root on the device, the tool pulls the account token off
 the speaker over ADB, asks the backend for a `conversationToken`, and sends the glagol
